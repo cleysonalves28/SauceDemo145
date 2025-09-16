@@ -34,5 +34,5 @@ Abordagem de automação
 
 
  Credencias do Git
- git config --global user.name "https://github.com/cleysonalves28"
- git config --global user.name "calves_nascimento@hotmail.com"
+ git config --global user.name "cleysonalves28"
+ git config --global user.email "calves_nascimento@hotmail.com"
