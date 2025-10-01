@@ -27,12 +27,37 @@ termina? 19/novembro
 CI/CD: Tem previsão para adicionar os testes.
 
 Abordagem de automação
- - Capture and playback / Record and Play --> Selenium IDe
- - Script Simples - tudo junto em um só arquivo
- - Script Struturado --> organiza o que se usa em 2 ou + locais em um 3º local
+ - Capture and playback / Record and Play --> Selenium IDe / playwright Codegen
+ - Script Simples - tudo junto em um só arquivo // para casos simples que não precisa de grandes detalhes
+ - Script Struturado --> organiza o que se usa em 2 ou + locais em um 3º local // para casos com loga vida que não precisa de grandes detalhes
 
 
 
  Credencias do Git
  git config --global user.name "cleysonalves28" 
  git config --global user.email "calves_nascimento@hotmail.com" 
+
+Decisão de imitar a navegação do usuario ou otimizar a velocidade
+// imitou usuario
+  await page.locator('[data-test="username"]').click();
+  await page.locator('[data-test="username"]').fill('standard_user');
+
+  // otimizou a execusão
+  wait page.fill('[name= "user-name"]', 'standard_user')
+
+
+  E quando tem mais de um jeito de interagir
+  -  clicar ou dar tab (login do Saucedemo)
+
+Comandos para teclado:
+   await page.press('[data-test="username"]', 'Tab')
+   await page.locator('[name="q"]', 'Enter')
+
+   Tab= digita letra por letrar
+   fill= como se fosse copia e cola
+
+   Sortear ações? Pode ser uma alternativa a fazer só 1
+   const usarClique = Math.random() <0.7 // 70% das vezes clique e 30% tab
+
+arquivo de config do playwright: playwright.config.js
+
