@@ -12,7 +12,7 @@ const { constants } = require('buffer');
  function pad2(num) {return String(num).padStart(2, '0')} // padstar quantidade de digitos
 
 
-// Função para definir data e hora baseado no momento da execução
+// Função para definir data e hora baseado no momento da execução 
 function compute_run_folder(baseDir){ // definir a pasta de execução exemplo: iterasys ou Ip
 // Cria o carimbo de data via CI(integração COntinua)
 if (process.env.RUN_TAG){ // == true
@@ -47,6 +47,7 @@ return runDir
 function ensure_subdirs(runDir){
      const dirs = {
         runDir,
+        resultsDir: path.join(runDir, 'test-results'),
         screenshotsDir: path.join(runDir,'screenshots')
 
      }
