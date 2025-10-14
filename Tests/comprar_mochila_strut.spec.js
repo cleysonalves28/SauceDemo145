@@ -11,21 +11,22 @@ test.describe('SauceDemo - fluxo principal de compra', () => {
             await page.goto('/')
  
             await expect(page).toHaveURL('/') // Verificação clássica
+            await expect(page.locator('[data-test="login-button"]')).toHaveText('Login')
+            await snap(page, testInfo, 'TC001-Passo01-Home')
  
-            await page.waitForLoadState('load') // espera a página carregar por completo
+            // await page.waitForLoadState('load') // espera a página carregar por completo
            
-            await page.waitForResponse(response =>
-                response.url() === '/' && response.status() === 200
-                && response.request().method() === 'GET'
-            )
+            // await page.waitForResponse(response =>
+            //     response.url() === '/' && response.status() === 200
+            //     && response.request().method() === 'GET'
+            // )
  
             // await page.getByText('trigger response').click();
             // const response = await responsePromise;
             // )
  
             // verificar o botão Login - também é clássica
-            await expect(page.locator('[data-test="username"]')).toHaveText('Login')
-            await snap(page, testInfo, 'TC001-Passo01-Home')
+            
            
         }) // fim do passo 1
  
@@ -44,7 +45,7 @@ test.describe('SauceDemo - fluxo principal de compra', () => {
         // Inicio do passo 3
         await test.step('Adicionar mochila no carrinho', async () => {
             const seletor_mochila = page.locator('.inventory_item'). filter({ hasText: /Backpack/})
-            await seletor_mochila.getByRole('button', {name:/add to cart/}). click()
+            await seletor_mochila.getByRole('button', {name:/Add to cart/}).click()
 
             await expect(page.locator('.shopping_cart_badge')).toHaveText('1')
              await snap(page, testInfo, 'TC001-Passo03-Mochila-Adicionada')
