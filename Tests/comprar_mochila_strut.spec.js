@@ -31,7 +31,7 @@ test.describe('SauceDemo - fluxo principal de compra', () => {
         }) // fim do passo 1
  
         // Inicio do passo 2
-        await test.step('Login com Sucesso', async () => {
+          await test.step('Login com Sucesso', async () => {
             await page.locator('[data-test="username"]').fill('standard_user')
             await page.locator('[data-test="password"]').fill('secret_sauce')
             await page.locator('[data-test="login-button"]').click()
