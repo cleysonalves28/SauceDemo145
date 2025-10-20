@@ -23,6 +23,7 @@ async function success_login_step(page, testInfo) {
     await snap(page, testInfo, 'TC001-Passo02B-Inventory')
 }
 
+
 test.describe('SauceDemo - fluxo principal de compra', () => {
     test('Comprar Mochila Direto', 
         async({ page }, testInfo) => {
@@ -57,7 +58,39 @@ test.describe('SauceDemo - fluxo principal de compra', () => {
             await expect(page.locator('[data-test="inventory-item-price"]')).toHaveText("$29.99")
             await snap(page, testInfo, 'TC001-Passo4-Carrinho-Conferido')
         })
-        
+
+        await test.step('Clicar no botão Checkout', async() => {
+            await page.locator('[data-test="checkout"]').click()
+            await expect(page).toHaveURL(/.checkout-step-one\.html/)
+            await expect(page.locator('.title')).toHaveText('Checkout: Your Information')
+            await page.locator('#first-name').fill('Cleyson Alves')
+            await page.locator('#last-name').fill('Alves')
+            await page.locator('#postal-code').fill('0670-78')
+            await page.locator('#continue').click()
+            await snap(page, testInfo, 'TC001-Passo05-Checkout_preenchido')
+
+        })
+
+        await test.step('Clicar botão Finish', async() => {
+            await expect(page).toHaveURL(/.checkout-step-two\.html/)
+            await expect(page.locator('.title')).toHaveText('Checkout: Overview')
+            await expect(page.locator('[data-test="item-quantity"]')). toHaveText('1')
+            await expect(page.locator('[data-test="inventory-item-price"]')). toHaveText('$29.99')
+            await expect(page.locator('[data-test="total-label"]')).toHaveText('Total: $32.39')
+            await snap(page, testInfo, 'TC001-Passo06-Checkout_Overview')
+            await page.locator('#finish'). click()
+                        
+        })
+
+        await test.step('Mensagem de agradecimento', async() => {
+            await expect(page).toHaveURL(/.checkout-complete\.html/)
+            await expect(page.locator('.title')).toHaveText('Checkout: Complete!')
+            await expect(page.locator('[data-test="complete-header"]')).toHaveText('Thank you for your order!')
+            await snap(page, testInfo, 'TC001-Passo06-Checkout_Overview')
+
+            await page.waitForTimeout(4000)
+
+        })
 
     }) // fim do test 1
     // test('Comprar Mochila Detalhes', 
