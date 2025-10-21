@@ -30,7 +30,43 @@ Abordagem de automação
  - Capture and playback / Record and Play --> Selenium IDe / playwright Codegen
  - Script Simples - tudo junto em um só arquivo // para casos simples que não precisa de grandes detalhes
  - Script Struturado --> organiza o que se usa em 2 ou + locais em um 3º local // para casos com loga vida que não precisa de grandes detalhes
+ - BDD /  Gherkin -- > Divide o script principal em 2: feature (funcionalidades) e steps (passos)
 
+ BDD
+ Behavior Driver Development
+ Desenvolvimento Direcionado por Comportamento
+
+ Quem define o Comportamento desejado? -- Po
+
+ Caracterizado pelo uso da sintaxe
+  Dado
+  quando
+  Então
+
+  feature: login
+  Cenario: Login com Sucesso
+
+  Dado que acesso ao site Saucedemo
+  Quando preencho o usuario e a senha
+  E clico no botão login
+  Então exibe a pagina de inventario
+
+  Cenario: Login sem Sucesso
+  Dado que acesso ao site Saucedemo
+  Quando preencho o usuario e a senha
+  E clico no botão login
+  Então exibe exibe uma mensagem de erro
+
+  Esquema do Cenario: Login sem Sucesso
+  Dado que acesso ao site Saucedemo
+  Quando preencho o <usuario> e a <senha>
+  E clico no botão login
+  Então exibe <mensagem>
+
+  Exemplo:
+  | usuario       |  Senha       | mensagem                                                                 |
+  | standard_user |   XPTO       | Epic sadface: Username and password do not match any user in this service
+  | standard_userX| secret_sauce | Epic sadface: Username and password do not match any user in this service
 
 
  Credencias do Git
